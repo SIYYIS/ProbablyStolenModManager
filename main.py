@@ -1,4 +1,4 @@
-"""Entry point for Probably Stolen Mod Manager (GUI + CLI)."""
+"""Entry point for the desktop workbench and command-line tools."""
 
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ def run_cli(args: argparse.Namespace) -> int:
     mgr = ProfileManager(data_dir)
 
     if args.command in {'save-profile', 'apply-profile', 'sort-active'} and active_session():
-        print('请先在 V3 中结束排错会话并恢复正式存档。')
+        print('请先在桌面工作台中结束排错会话并恢复正式存档。')
         return 1
 
     if args.command == "scan":
@@ -90,15 +90,12 @@ def run_cli(args: argparse.Namespace) -> int:
     return 1
 
 
-def main(*, default_web: bool = False) -> int:
+def main() -> int:
     parser = argparse.ArgumentParser(description="Probably Stolen Mod Manager")
     parser.add_argument("--data-dir", help="Custom manager_data directory")
     parser.add_argument("--game-dir", help="Override Probably Stolen game folder")
     parser.add_argument("--workshop-dir", help="Override Steam workshop 4348910 folder")
     parser.add_argument("--save-dir", help="Override LocalLow save folder")
-    parser.add_argument("--web", action="store_true", help="Run the local WebUI")
-    parser.add_argument("--port", type=int, default=8765, help="WebUI HTTP port (127.0.0.1 only)")
-    parser.add_argument("--no-browser", action="store_true", help="Do not open the WebUI in a browser")
 
     sub = parser.add_subparsers(dest="command")
     sub.add_parser("scan", help="Scan installed mods & validate active load order")
@@ -123,16 +120,13 @@ def main(*, default_web: bool = False) -> int:
         return run_cli(args)
 
     data_dir = Path(args.data_dir).resolve() if args.data_dir else _default_data_dir()
-    if args.web or default_web:
-        from webui.server import run
+    from webui.desktop import run_desktop, show_start_error
 
-        run(data_dir, port=args.port, open_browser=not args.no_browser)
-        return 0
-
-    from ui.app import ModManagerApp
-
-    app = ModManagerApp(data_dir)
-    app.run()
+    try:
+        run_desktop(data_dir)
+    except Exception as exc:
+        show_start_error(exc)
+        return 1
     return 0
 
 

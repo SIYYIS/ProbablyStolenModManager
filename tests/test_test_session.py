@@ -9,14 +9,14 @@ from unittest.mock import patch
 from core import test_session as session
 from core.paths import GAME_EXE_NAME
 from core.scanner import scan_installed_mods
-from test_ui_workbench import _make_fixture
+from game_fixture import make_game_fixture
 
 
 class IsolatedTestSessionTests(unittest.TestCase):
     def setUp(self):
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
-        self.paths = _make_fixture(Path(tmp.name))
+        self.paths = make_game_fixture(Path(tmp.name))
         self.root = self.paths.save_data_dir
         self.slot = self.root / 'save_0.es3'
         self.slot.write_bytes(b'official slot data')

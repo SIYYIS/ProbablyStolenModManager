@@ -75,7 +75,7 @@ export function ShareTools({code, result, busy, setCode, generate, verify, depen
       <h3>{result.name} <span>{result.format} · {result.order.length} 项</span></h3>
       <div className="plan-summary">{(Object.keys(counts) as VerificationStatus[]).map(status =>
         <span key={status} className={`pill ${status === 'match' ? 'ok' : (status === 'unverifiable' ? '' : 'warning')}`}>{statusLabels[status]} {counts[status]}</span>)}</div>
-      {result.format === 'PSMM1' && <p className="muted">旧分享码没有内容指纹，只能确认是否已安装。</p>}
+      {result.format === 'PSMM1' && <p className="muted">此分享码不含内容指纹，校验只能确认模组是否已安装。</p>}
       {counts.different > 0 && <p role="alert">同 ID 的实际文件不同。分享码不包含原文件，也不能恢复历史工坊版本。</p>}
       <ul className="verification-list">{result.verification.map((row, index) => <li key={row.id} className="plan-row">
         <div><strong>{index + 1}. {row.name || row.id}</strong>{row.name && row.name !== row.id && <code>{row.id}</code>}

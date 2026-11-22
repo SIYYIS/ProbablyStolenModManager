@@ -38,5 +38,5 @@ test('verifies a new code, still reads legacy codes, and fits a compact window',
   const dependencies = page.getByRole('dialog', {name: '前置补齐向导'});
   await expect(dependencies).toContainText('前置检查通过');
   await dependencies.getByRole('button', {name: '返回校验'}).click();
-  await expect(dialog).toContainText('旧分享码没有内容指纹');
+  await expect(dialog).toContainText('此分享码不含内容指纹');
 });

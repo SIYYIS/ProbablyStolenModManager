@@ -51,8 +51,8 @@ export function TestSession({onChanged, canStart}: {onChanged: () => Promise<voi
         </div>
       </> : <>
         <div className="tool-segments" role="group" aria-label="排错模式">{[['vanilla','纯净启动'],['bisect','二分排错']].map(([key, label]) => <button type="button" className={`button ${key === mode ? 'primary' : ''}`} key={key} aria-pressed={key === mode} onClick={() => setMode(key)}>{label}</button>)}</div>
-        <p className="muted">测试不载入正式档位。先退出游戏和旧版管理器，并在 Steam 中关闭本游戏的云存档；结束会话后再重新开启。</p>
-        <label className="inline-check"><input type="checkbox" checked={cloud} onChange={e => setCloud(e.target.checked)}/>已关闭游戏、旧版管理器和 Steam 云存档</label>
+        <p className="muted">测试不载入正式档位。先退出游戏和管理器的其他实例，并在 Steam 中关闭本游戏的云存档；结束会话后再重新开启。</p>
+        <label className="inline-check"><input type="checkbox" checked={cloud} onChange={e => setCloud(e.target.checked)}/>已关闭游戏、管理器的其他实例和 Steam 云存档</label>
         <div className="dialog-actions end"><button className="button primary" disabled={!session || !cloud || busy} onClick={() => {if (canStart()) void act('start', {mode, steam_cloud_disabled:true}, true);}}><Play size={15}/>启动测试</button></div>
       </>}
     </div>

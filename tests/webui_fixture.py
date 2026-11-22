@@ -14,7 +14,7 @@ from core.es3_manager import ProfileManager
 from core.paths import GAME_EXE_NAME
 from core.settings import AppSettings
 from core.workshop import WorkshopItem, WorkshopPage
-from test_ui_workbench import _make_fixture
+from game_fixture import make_game_fixture
 from webui.server import run
 
 
@@ -68,7 +68,7 @@ def main():
     args = parser.parse_args()
     with TemporaryDirectory(prefix="psmm-web-demo-") as folder:
         base = Path(folder)
-        paths = _make_fixture(base)
+        paths = make_game_fixture(base)
         add_mod_fixtures(paths)
         (paths.game_dir / GAME_EXE_NAME).touch()
         (paths.save_data_dir / "save_0.es3").write_bytes(

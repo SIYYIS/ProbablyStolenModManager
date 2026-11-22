@@ -1,98 +1,26 @@
-# 深空当铺：可能是偷的 · Mod 预设与工坊管理器 (Probably Stolen Mod Manager)
+# 深空当铺：可能是偷的 · 模组管理器
 
-《深空当铺：可能是偷的》（AppID `4348910`）外置 Mod 管理与多存档预设一键切换工具。管理、扫描、写入与备份逻辑在 `core/`；新版桌面工作台、浏览器版、旧桌面界面和命令行共用它。
+《深空当铺：可能是偷的》（Probably Stolen）的 Windows 桌面模组管理器。
 
-新版 WebUI 参考 AzurPilot 的实现方式：React、TypeScript、Vite 和 Lucide 前端，FastAPI、Uvicorn 本机服务。加载顺序支持拖拽和键盘操作，参数页支持表单与 CodeMirror JSON 编辑器。WebUI 仅在 `127.0.0.1` 监听，不应反向代理到网络。
+## 下载 Windows 版
 
-## 核心功能
+**[直接下载 v0.2.1 EXE](https://github.com/SIYYIS/ProbablyStolenModManager/releases/download/v0.2.1/ProbablyStolenModManager-Desktop-v0.2.1.exe)** · [发布页](https://github.com/SIYYIS/ProbablyStolenModManager/releases/latest)
 
-参见 [同类模组管理器功能对照](docs/mod-manager-benchmark.md)，了解目前的功能边界和建议的开发顺序。
+下载后双击 EXE 即可打开独立窗口，不用解压或安装 Python、Node.js。系统需有 Microsoft Edge WebView2 Runtime。仓库为私有，下载时请登录有访问权限的 GitHub 账号。
 
-1. **多存档预设一键切换 (`core/es3_manager.py`)**
-   - 快照保存 `SaveFile.es3` 中的 `modOrder`、`modTrust`、`modTrustMac`、`workshopOwners`，并与独立 `ModConfigs/` 参数目录一起隔离保存。
-   - 普通预设切换采用**局部键值合并**模式，只切换 Mod 列表与授权记录，保留最新的音量/画质/按键设置；配置目录随预设整体切换。
-   - 非 JSON 存档只保存为整档快照，恢复前需要显式确认；普通预设不会用旧快照覆盖当前存档。
-   - 写入前备份可用存档及随预设切换的配置；写入失败会回滚目录。强制退出后，下次刷新时会检查未完成的切换；若存档后来被外部改过，会保留现场并提示核对。
-   - 支持 `PSMM1:...` 普通分享码，以及带实际模组文件指纹的 `PSMM2:...` 可校验分享码。
-2. **本地 + 工坊全量扫描与拓扑排序 (`core/scanner.py`, `core/manifest.py`)**
-   - 自动解析 Steam `libraryfolders.vdf`，同时扫描本地 `Mods/` 与 Steam 工坊 `4348910` 目录，准确处理官方“本地同名 `<ID>` 覆盖工坊副本”规则。
-   - 根据匹配当前安装的 `Player.log` 识别游戏版本，逐条比较 `<GameVersions>` 声明；也可手动设置版本。声明匹配不保证运行兼容。
-   - 模组详情与勾选后的「批量权限审阅」显示权限用途、风险和最近的游戏审计记录。管理器不修改批准记录、不替代游戏的 DLL 扫描；请在游戏内审阅并批准。
-   - 一键拓扑依赖排序（借鉴 `RimPy / RimSort`）与 `LootTables/*.json` 冲突提示（借鉴 `Irony Mod Manager`）。
-3. **Mod 参数可视化自定义 (`core/config_inspector.py`)**
-   - 自动识别并可视化编辑官方 `ModConfigs/<mod_id>.json`（布尔开关、整数/小数、字符串与 JSON 项），以及 Mod 内置 `LootTables/*.json` 数据文件。
-4. **Steam 创意工坊浏览与手动下载 (`core/workshop.py`)**
-   - 公开工坊搜索与按 ID 查询无需密钥。公开搜索不可用时，可从工坊页点「去设置」，填写 Steam Web API Key 作为备用。
-   - 搜索与详情按工坊 ID 标记「已下载」。在「已下载」中可离线查看 Steam 工坊目录与 `Mods/ws_<工坊ID>` 下的模组；Steam 下载完成后点「刷新已下载」。
-   - 按照 Steam 的公开结果分页检索，显示原始标题和简介。
-   - 可调用 `DepotDownloader` 或 `SteamCMD` 手动下载到 `Mods/`。账号验证在下载器自己的窗口中完成，管理器不接收密码；也可直接用 Steam 客户端订阅。
+## 功能
 
-## 运行与打包
+- 扫描、排序与管理本地模组和 Steam 工坊模组，检查前置依赖与资源冲突。
+- 创建和切换模组预设，编辑模组配置与游戏存档，管理备份。
+- 搜索创意工坊、查看模组更新时间，分析游戏报错并导出排错包。
 
-从 Git 仓库或源码压缩包获得的内容不包含打包好的程序：请按照下方「从源码运行」或 `build_desktop.bat` 构建 Windows 桌面版。为保护用户数据，仓库不包含 `manager_data/`、游戏存档、排错包、依赖缓存和构建产物。
-
-### 新版 Windows 桌面工作台
-
-双击 `dist/ProbablyStolenModManager-Desktop-v0.2.1.exe` 直接打开独立程序窗口，不需要打开浏览器。关闭窗口后，程序也会停止自己的本机服务。无需安装 Python 或 Node.js；系统需要 Microsoft Edge WebView2 Runtime。
-
-程序默认沿用 EXE 同目录的 `manager_data/`，自动读取 Steam 库、工坊与存档目录。自动定位不到时，可在窗口内的「设置」填写目录。不要同时用多个版本编辑同一份游戏存档。
-
-「路径与设置」在各输入框中显示手动或自动定位的实际路径，支持系统选择器、逐项自动识别和清空。选择或输入路径后可先看检查结果；清空后保存即恢复自动定位。软件和补丁识别仅检查已知文件标记，不下载、安装、运行或校验补丁。
-
-「存档编辑」读取 `save_<档位号>.es3`，按资金与账务、商店经营、阵营声望、外出与拾荒、健康与状态、站区局势分组。阵营声望只编辑档位中已有且核实过的阵营分数，未知阵营可查看但不可编辑；上层区友好度和下层区动荡不属于玩家声望。关掉游戏后才能保存；程序会备份原始档位并提供恢复入口。存档索引不随编辑改写，标题页金额预览会在游戏下次存档后刷新。商店吸引力会影响原版普通顾客数量；没有一个可直接写入的全局客流或购买预算字段。奥丁自己的购买预算可以单独编辑。见 [字段核对笔记](docs/save-editing-research.md)。
-
-字段可按分类、关键字或「仅看改动」筛选。保存前可审阅原值和新值，逐项撤回；只有确认后才备份并写入剩余的项目。
-
-#### 桌面版功能入口
-
-- **本地模组**：批量勾选启停、拖拽排序、双击目录。详情可打开已识别的工坊条目，也可直接跳到已安装的前置模组。诊断默认折叠相同资源；同名不同内容和错误仍直接显示，不推定游戏运行时发生覆盖。首次启用未授权的模组仍需在游戏内确认。
-- **本地模组 → 前置补齐**：检查整条依赖链，区分已装待启用、未安装、清单异常及循环；有明确工坊线索时可打开条目，安装后重新扫描。载入草稿不写存档；最后仍须审阅并保存，写入前复核前置。不会自动下载、授权或启动游戏。
-- **分享码 → 跨电脑校验**：可校验码记录加载顺序、模组 ID、实际副本来源和文件指纹。导入前显示内容相同、不同、缺失或无法核验，也可继续检查前置。普通码不含指纹；两种码均不包含模组文件、存档、配置或授权，不能恢复旧版工坊文件。
-- **模组修改**：选中已安装模组后，在「配置文件」切换对应文件并手动编辑。结构化配置显示字段类型、注释及来源；掉落表等数据文件可编辑原始 JSON。保留模组简介、README、保存前校验和备份，不编译或执行代码。无注释字段默认隐藏，可在「路径与设置 → 模组修改」打开「显示无注释参数」。
-- **创意工坊**：公开关键词搜索和按 ID 查询不需要 Steam 账号或 API Key。关键词按相关度排序，可以翻页。已配置的 API Key 只用作备用；线上不可用时可离线查已安装模组。只有通过需验证身份的外部下载器下载时，才用到「路径与设置 → 外部下载器」内的 Steam 登录账号。页面共用 `manager_data/workshop_covers/` 封面缓存。
-- **高级工具 → 预设对比／备份时间线**：比较两个预设或当前状态；关联真实档位后，预设切换前备份该档位，不会自动覆盖、加载或替换档位。可导出备份副本，或明确确认后回滚受支持的档位。
-- **高级工具 → 工坊版本**：按本机 ACF 与 Steam 的发布时间比较；锁定通过独立本地副本生效，Steam 仍可更新原件。新来源的授权由游戏确认。
-- **本地模组 → 工坊最后更新**：点击「工坊版本」里的「检查更新」后，列表和详情会显示 Steam 公开更新时间（本地时区）。成功查到的日期会保存在本机；它不代表本机安装或锁定副本的版本日期。
-- **高级工具 → 诊断**：查看上次游戏实际加载与异常，导出脱敏排错 ZIP。配置默认不含在排错包中，分享前请检查预览。**路径与设置**里的 `dev.txt` 只对核验过的构建开放，不修改非空标记。
-- **高级工具 → 诊断 → AI 分析报错**：在同页填写兼容接口、模型 ID 和可选密钥。每次先预览从 `Player.log` 提取并尽力脱敏的异常片段，确认后才发送。不上传配置、存档或完整日志，不执行或自动应用分析结果。密钥仅保存在本机 `manager_data/diagnostic-ai.json`（未加密）。已安装的语言包保留不动，工作台不再提供机翻。
-- **高级工具 → 启动排错**：关闭游戏、旧版管理器和 Steam 云存档后，按提示启动纯净或二分测试。测试不会载入正式档位，不能复现只在特定正式档中出现的问题。测试中请勿另行从 Steam 启动；退出游戏后点「结束并恢复正式存档」，再开启云存档。中途关了管理器，重开桌面版从同一入口恢复。二分结果是候选，可能受依赖、组合和间歇性故障影响。
-- **管理预设**：可以为普通预设创建 Windows 桌面快捷方式。快捷方式指向当前 EXE；移动或升级该 EXE 后重新创建。整档预设只能在工作台内确认恢复。
-
-从源码运行：安装 `requirements-desktop.txt` 中的依赖，构建前端，然后执行 `py -3.10 desktop_launcher.py`。可使用 `--data-dir` 指定独立的应用数据目录。重新打包前关闭前端开发服务器，再运行 `build_desktop.bat`。
-
-### 浏览器版（WebUI）
-
-双击打包后的 `dist/ProbablyStolenModManager-WebUI.exe`，在默认浏览器中打开工作台；关闭它的服务窗口即停止服务。同一 `dist/` 下的旧版和新版使用同一个 `manager_data/`，不要并行编辑同一份存档。
-
-从源码运行（Python 3.10 和 Node.js 22.12+）：
+## 从源码运行
 
 ```powershell
-py -3.10 -m pip install -r requirements-web.txt
+py -3.10 -m pip install -r requirements-desktop.txt
 npm --prefix frontend ci
 npm --prefix frontend run build
-py -3.10 main.py --web
+py -3.10 main.py
 ```
 
-可选参数：`--data-dir` 指定应用数据目录，`--port` 选择本机端口，`--no-browser` 不自动打开浏览器。开发前端时，可在 8765 端口启动后端，然后运行 `npm --prefix frontend run dev`，由 Vite 本机代理转发 `/api`。
-
-打包 WebUI：运行 `build_web.bat`。产物不要求用户另行安装 Node.js 或 Python。
-
-WebUI 测试：后端回归测试需要 `httpx`。浏览器测试先构建前端，再运行 `npm --prefix frontend run test:e2e`；首次需执行 `npx playwright install chromium`（从 `frontend/` 运行），或将环境变量 `PSMM_BROWSER_CHANNEL` 设为 `msedge` 使用本机 Edge。浏览器测试使用临时存档和模拟工坊结果。
-
-### 旧桌面界面和命令行
-
-```bash
-# 直接运行桌面 GUI（Windows 自带 Python 3.10+ 即可直接运行，无需 pip install）
-python main.py
-
-# 命令行模式示例
-python main.py scan
-python main.py save-profile "星露谷种田档" --note "存档槽1"
-python main.py apply-profile "星露谷种田档" --launch
-# 仅对无法解析为 JSON 的整档快照使用，恢复会替换整个 SaveFile.es3
-python main.py apply-profile "旧版完整存档" --full-restore
-```
-
-Windows 打包为单文件 `.exe`：双击运行 `build_exe.bat`（需预先 `pip install pyinstaller`）。
-
-本地回归测试：`python -B -m unittest discover -s tests -v`。测试使用临时存档，不改动游戏数据。
+运行 `build_desktop.bat` 可重新打包 EXE。
