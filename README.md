@@ -4,7 +4,7 @@
 
 ## 下载 Windows 版
 
-**[直接下载 v0.2.1 EXE](https://github.com/SIYYIS/ProbablyStolenModManager/releases/download/v0.2.1/ProbablyStolenModManager-Desktop-v0.2.1.exe)** · [发布页](https://github.com/SIYYIS/ProbablyStolenModManager/releases/latest)
+**[直接下载 v0.2.1 Windows x64 EXE](https://github.com/SIYYIS/ProbablyStolenModManager/releases/download/v0.2.1/ProbablyStolenModManager-Desktop-v0.2.1-x64.exe)** · [发布页](https://github.com/SIYYIS/ProbablyStolenModManager/releases/latest)
 
 下载后双击 EXE 即可打开独立窗口，不用解压或安装 Python、Node.js。系统需有 Microsoft Edge WebView2 Runtime。仓库为私有，下载时请登录有访问权限的 GitHub 账号。
 
