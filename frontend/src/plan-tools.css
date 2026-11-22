@@ -1,0 +1,20 @@
+.plan-tools{min-width:0;grid-template-columns:minmax(0,1fr);overflow-wrap:anywhere}
+.plan-tools p{margin:0;font-size:13px}
+.plan-tools [role=alert]{color:#854b16}
+.plan-summary,.plan-buttons{display:flex;align-items:center;flex-wrap:wrap;gap:6px}
+.plan-summary{font-size:12px;color:var(--muted)}
+.plan-group{display:grid;gap:6px;min-width:0;border-top:1px solid var(--line);padding-top:8px}
+.plan-group h3{font-size:14px;margin:0}
+.plan-group h3 span{color:var(--muted);font-size:12px;font-weight:500;margin-inline-start:5px}
+.plan-group ul{list-style:none;margin:0;padding:0}
+.plan-group .verification-list,.plan-order ol{max-height:38vh;overflow:auto;overscroll-behavior:contain}
+.plan-row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
+.plan-row>div{min-width:0}
+.plan-row>div:first-child{flex:1 1 145px}
+.plan-row strong,.plan-row small,.plan-row code{display:block}
+.plan-row small,.plan-tools code{color:var(--muted);font-size:12px}
+.plan-row .button,.plan-tools .pill{white-space:normal}
+.plan-order summary{cursor:pointer;font-size:13px;font-weight:650}
+.plan-order ol{margin:6px 0 0;padding-inline-start:26px}
+.plan-order li{font-size:13px;padding-block:3px}
+@media(max-width:440px){.plan-row{flex-wrap:wrap}.plan-row>div:first-child{flex-basis:100%}}

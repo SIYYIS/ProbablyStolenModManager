@@ -1,0 +1,24 @@
+.psmm-source-tools { grid-column: 1 / -1; min-width: 0; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 375px), 1fr)); align-items: start; }
+.psmm-source-tools .source-panel { min-width: 0; display: grid; gap: 13px; padding: 16px; }
+.psmm-source-tools .source-title { display: flex; align-items: flex-start; gap: 10px; }
+.psmm-source-tools svg { width: 16px; height: 16px; flex-shrink: 0; }
+.psmm-source-tools .source-title svg { width: 20px; height: 20px; color: var(--accent); margin-top: 3px; }
+.psmm-source-tools h2 { font-size: 1.02rem; margin: 0 0 4px; }
+.psmm-source-tools p { margin: 0; }
+.psmm-source-tools :is(.source-title p, .source-muted, small, .source-meta > span) { color: var(--muted); font-size: .82rem; }
+.psmm-source-tools :is(.source-form, .source-card, .source-confirm, .source-cards) { display: grid; gap: 8px; min-width: 0; }
+.psmm-source-tools .source-form label { font-size: .83rem; font-weight: 650; }
+.psmm-source-tools :is(.source-input-line, .source-actions, .source-meta) { display: flex; gap: 6px 10px; flex-wrap: wrap; align-items: center; }
+.psmm-source-tools .source-input-line input { flex: 1 1 175px; }
+.psmm-source-tools input:not([type='checkbox']) { min-width: 0; padding: 8px; color: var(--text); border: 1px solid color-mix(in srgb, var(--muted), transparent 60%); border-radius: 8px; background: transparent; }
+.psmm-source-tools input[type='checkbox'] { accent-color: var(--accent); flex: 0 0 auto; }
+.psmm-source-tools :is(.source-members, .source-confirm ol) { max-height: 280px; overflow-y: auto; margin: 0; }
+.psmm-source-tools .source-members { list-style: none; padding: 0 3px 0 0; }
+.psmm-source-tools .source-members li { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 7px 3px; border-bottom: 1px solid color-mix(in srgb, var(--muted), transparent 80%); }
+.psmm-source-tools :is(.source-member-title, .source-login, .source-progress) { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.psmm-source-tools :is(strong, small, .source-member-title span, .source-progress) { overflow-wrap: anywhere; }
+.psmm-source-tools .source-member-title small { display: block; }
+.psmm-source-tools .source-badge { font-size: .73rem; background: var(--accent-soft); border-radius: 8px; padding: 3px 7px; text-align: center; max-width: 55%; }
+.psmm-source-tools :is(.source-confirm, .source-card) { padding: 10px; border: 1px solid color-mix(in srgb, var(--muted), transparent 75%); border-radius: 10px; overflow-wrap: anywhere; }
+.psmm-source-tools .source-confirm { background: var(--accent-soft); }
+.psmm-source-tools .source-error { color: var(--danger, #ad2537); overflow-wrap: anywhere; }

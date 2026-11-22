@@ -1,0 +1,23 @@
+@import './save-slots.css';
+
+.slot-group {
+  padding-block: 10px 8px;
+}
+
+.slot-group-title {
+  margin-block-end: 4px;
+  padding: 0 8px 7px 10px;
+  border-block-end: 1px solid var(--line);
+  font-size: 14px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.slot-field-title label {
+  flex: 1 1 12ch;
+}
+
+@container save-editor (max-width: 520px) {
+  .slot-group { padding-inline: 8px; }
+  .slot-fields { grid-template-columns: minmax(0, 1fr); }
+}

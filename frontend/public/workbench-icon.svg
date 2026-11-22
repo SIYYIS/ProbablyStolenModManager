@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title">
+  <title id="title">Deep Space Pawnshop Mod Workbench</title>
+  <defs>
+    <linearGradient id="case" x1="35" y1="8" x2="202" y2="249" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#018e8e"/>
+      <stop offset=".49" stop-color="#075d69"/>
+      <stop offset="1" stop-color="#101d34"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="81" y1="38" x2="154" y2="123" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fbfeff"/>
+      <stop offset=".48" stop-color="#d5f7fa"/>
+      <stop offset="1" stop-color="#66cadd"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="103" y1="120" x2="144" y2="177" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff0df"/>
+      <stop offset="1" stop-color="#ffbbab"/>
+    </linearGradient>
+    <linearGradient id="coat" x1="100" y1="170" x2="149" y2="224" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#14667a"/>
+      <stop offset="1" stop-color="#173346"/>
+    </linearGradient>
+    <linearGradient id="credit" x1="184" y1="159" x2="226" y2="211" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffab87"/>
+      <stop offset=".58" stop-color="#ff796f"/>
+      <stop offset="1" stop-color="#ed536a"/>
+    </linearGradient>
+    <clipPath id="tile">
+      <rect x="5" y="5" width="246" height="246" rx="56"/>
+    </clipPath>
+  </defs>
+
+  <!-- Enamel tile and a single orbital sweep. -->
+  <g clip-path="url(#tile)">
+    <rect x="5" y="5" width="246" height="246" fill="url(#case)"/>
+    <path fill="#11b4ab" opacity=".29" d="M-6 201C43 151 132 114 262 81v26C138 130 57 171-6 228Z"/>
+    <path d="M-5 194C59 141 143 108 266 82" fill="none" stroke="#7cf4d9" stroke-opacity=".42" stroke-width="2"/>
+    <path d="M212 39q4 15 17 18-13 3-17 18-3-15-17-18 14-3 17-18Z" fill="#aeffea"/>
+    <path d="M32 129q2 7 9 9-7 2-9 9-2-7-9-9 7-2 9-9Z" fill="#8aeee0"/>
+    <circle cx="225" cy="116" r="2.8" fill="#68dfd4"/>
+    <circle cx="41" cy="60" r="2.8" fill="#86f4de"/>
+    <rect x="8" y="8" width="240" height="240" rx="53" fill="none" stroke="#0a263a" stroke-width="6"/>
+    <rect x="12" y="12" width="232" height="232" rx="49" fill="none" stroke="#73e6d7" stroke-opacity=".33" stroke-width="2"/>
+  </g>
+
+  <!-- Silhouette, work jacket, and stand collar. -->
+  <g stroke="#101f34" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="url(#coat)" d="M44 213c2-23 16-36 46-44l24-5 22 1c32 3 62 19 66 41l1 9c1 8-5 12-14 12H57c-10 0-15-5-13-14Z"/>
+    <path fill="#e7988e" stroke-width="5" d="m106 159 32-2 2 19-15 13-19-12Z"/>
+    <path fill="#edf8f7" stroke-width="4.5" d="m95 166 28 17 23-18 9 12-16 36-16-15-15 15-21-36Z"/>
+  </g>
+  <path d="m122 201 2 22" fill="none" stroke="#101f34" stroke-width="5"/>
+  <path d="M51 204q6-16 23-22l10 10q-15 4-22 16Z" fill="#45d1c8"/>
+  <path d="M150 196h12l-3 10h-13Z" fill="#fbcda5"/>
+
+  <!-- Bob silhouette, warm face, and sculpted silver fringe. -->
+  <g stroke="#101f34" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#57b4cb" stroke-width="7" d="M51 102C45 70 70 43 104 34c35-10 64 0 80 22 16 21 14 50 6 72-5 15-6 28 5 39-14 4-27 1-38-7-27 17-66 14-87 0l-18 6c6-13 4-25-1-42-2-8-2-15 0-22Z"/>
+    <path fill="url(#skin)" stroke-width="6" d="M71 105c5-24 24-41 53-41 34-1 57 23 56 53l-2 14c-3 27-22 44-49 48-29 4-52-7-60-31-12 0-18-7-17-17 1-8 6-11 15-8Z"/>
+    <path fill="#f5a499" d="M63 131q5 0 7 8-8 0-7-8Z" stroke="none"/>
+    <path fill="url(#hair)" stroke-width="7" d="M53 124c-11-17-11-40 0-57 10-17 27-28 48-32l-8-10c25-1 46 5 58 15 4-7 11-12 19-15l-3 20c19 9 29 26 28 46-1 13-5 25-14 33l-9 8-6-27c-14 1-26-6-33-16-15 17-35 25-62 26l-5 15Z"/>
+  </g>
+  <path fill="#fff" opacity=".73" d="M58 82c9-21 28-35 56-37 12-1 24 1 34 6-35-5-64 10-83 34-4 5-9 3-7-3Z"/>
+  <path fill="#4baecb" opacity=".62" d="M143 76c9 11 21 15 34 13l5 19 5-9c0 10-4 18-9 23l-9-20c-14 0-26-6-33-15Z"/>
+  <path d="M83 105c19-3 34-14 43-26" fill="none" stroke="#58b3cb" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Expressive eyes and a compact comms clasp. -->
+  <g fill="#15283d">
+    <path d="M79 124q8-9 19-5l-4 4q-8-1-13 4Z"/>
+    <path d="M133 117q9-9 20-3l-3 4q-7-3-15 2Z"/>
+    <path d="M80 131q6-7 12-5 7 1 7 11 0 10-8 11-8 0-9-11l-4-3Z"/>
+    <path d="M133 127q7-7 13-5 7 2 7 11 0 11-8 12-9 0-10-11l-4-4Z"/>
+  </g>
+  <path d="M86 142q5 4 10-2-1 7-5 7-4 0-5-5Zm53-2q6 3 11-3-1 7-5 7-4 0-6-4Z" fill="#2b9c9f"/>
+  <g fill="#fff">
+    <ellipse cx="89" cy="131" rx="3.3" ry="3.6"/>
+    <ellipse cx="143" cy="128" rx="3.3" ry="3.6"/>
+  </g>
+  <g fill="#f68e8d" opacity=".7">
+    <ellipse cx="80" cy="152" rx="6" ry="3"/>
+    <ellipse cx="154" cy="149" rx="7" ry="3"/>
+  </g>
+  <path d="M108 154q8 6 17-1" fill="none" stroke="#8d4c56" stroke-width="3.4" stroke-linecap="round"/>
+  <path d="M185 126q-1 24-23 24" fill="none" stroke="#101f34" stroke-width="4" stroke-linecap="round"/>
+  <path fill="#224962" stroke="#101f34" stroke-width="5.5" stroke-linejoin="round" d="M181 104c7-4 13-1 14 5l-2 18c-1 6-10 10-16 6-4-3-3-9-2-15 1-7 2-11 6-14Z"/>
+  <path d="m186 111-2 13" stroke="#7cf7e4" stroke-width="4.5" stroke-linecap="round"/>
+
+  <!-- Octagonal enamel credit, tilted against the portrait. -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#bb4562" stroke="#101f34" stroke-width="7" d="m197 156 21 5 14 16 2 20-12 18-20 7-21-6-13-17-1-21 13-16Z"/>
+    <path fill="url(#credit)" d="m196 157 19 5 13 15 1 16-10 16-18 7-18-5-13-16-1-16 12-16Z"/>
+    <path d="m174 181 10-14 13-5 16 4" fill="none" stroke="#ffdbc2" stroke-opacity=".8" stroke-width="2.5"/>
+    <path fill="#733b58" d="M199 173q4 12 17 16-13 4-17 17-4-13-17-17 13-4 17-16Z"/>
+    <path fill="#fff3da" d="M198 171q4 12 16 16-12 4-16 16-4-12-16-16 12-4 16-16Z"/>
+  </g>
+</svg>

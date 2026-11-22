@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+manager_data/
+/build/
+/dist/
+/psmm-support.zip
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+frontend/node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/

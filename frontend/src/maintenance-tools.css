@@ -1,0 +1,29 @@
+.maintenance-tools{min-width:0;display:grid;grid-template-columns:minmax(0,1fr);gap:12px;overflow-wrap:anywhere}
+.maintenance-tools [hidden]{display:none!important}
+.mt-panel,.mt-choices{display:grid;gap:10px;min-width:0;grid-template-columns:minmax(0,1fr)}
+.maintenance-tools p,.maintenance-tools h4{margin:0}
+.maintenance-tools p,.maintenance-tools li{font-size:13px;line-height:1.55}
+.mt-help,.maintenance-tools small{color:var(--muted);font-size:12px}
+.mt-actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.mt-actions button,.mt-line button{white-space:normal;flex-shrink:0;max-width:100%}
+.mt-tabs{padding-bottom:9px;border-bottom:1px solid var(--line)}
+.mt-field{display:grid;gap:4px;min-width:0;font-size:12px;font-weight:650}
+.mt-field select{width:100%;min-width:0;min-height:34px;padding:5px 7px;color:inherit;background:var(--surface,#fff);border:1px solid var(--line,#d8dbe5);border-radius:6px}
+.mt-toolbar{display:grid;min-width:0;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end}
+.mt-card,.mt-review{min-width:0;padding:10px;border:1px solid var(--line,#d8dbe5);border-radius:8px}
+.mt-card summary{cursor:pointer;font-weight:650;font-size:13px}
+.mt-blocked{margin:0;padding-inline-start:30px}
+.mt-review,.mt-alert{background:color-mix(in srgb,#ba6a16 12%,transparent);border-radius:8px}
+.mt-review{display:grid;gap:8px}
+.mt-alert{padding:6px 8px}
+.mt-check{display:flex;align-items:center;gap:6px;font-size:13px}
+.mt-scroll{max-height:32vh;overflow:auto;overscroll-behavior:contain}
+.mt-list{margin:0;padding:0;list-style:none}
+.mt-line{display:flex;align-items:start;justify-content:space-between;gap:8px;min-width:0;padding-block:6px;border-bottom:1px solid var(--line)}
+.mt-line>div{flex:1 1 auto;min-width:0}
+.mt-line>span{flex:0 1 42%;min-width:0}
+.mt-line small{display:block}
+.mt-tag{display:inline-block;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:11px;font-weight:650}
+.mt-tag.blocking,.mt-tag.scanner{background:color-mix(in srgb,#ba6a16 15%,transparent)}
+.maintenance-tools pre{margin:0;max-height:26vh;overflow:auto;padding:8px;font-size:12px;border-radius:6px;background:color-mix(in srgb,currentColor 7%,transparent);white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:520px){.mt-toolbar{grid-template-columns:minmax(0,1fr)}.mt-line{flex-wrap:wrap}.mt-line>div{flex-basis:70%}.mt-line>span{flex-basis:100%}}

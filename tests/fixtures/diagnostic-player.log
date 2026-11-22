@@ -1,0 +1,21 @@
+[ModLoader] 2 mod(s) enabled
+[ModLoader] Loading: FixtureWidget.dll
+[ModLoader]   Harmony: 1 method(s) patched
+[ModLoader]   Initialized: Fixture Widget v1.0.0
+[ModLoader] Loading: FixtureWindow.dll
+[Fixture Window] Error: MissingMethodException: Method not found: string .ModHelper.GetGameVersion() (Harmony patching or Init)
+System.MissingMethodException: Method not found: string .ModHelper.GetGameVersion()
+  at FixtureWindow.Mod.Init () in C:\Users\FixtureOwner\source\FixtureWindow.cs:12
+[ModLoader]   Init failed: Fixture Window v1.4.1
+[ModLoader]   Registered (disabled, Workshop): Fixture Disabled v3.34.7
+[ModLoader] audit: game 0.46D, trust list: fixture
+[ModLoader] audit: fixture.widget v1.0.0 source=Local workshop=0 owner=0 running=True trust=Match caps=files, reflection-external hash=fixture
+[ModLoader] audit: fixture.window v1.4.1 source=Workshop workshop=100 owner=76561190000000000 running=False trust=Updated caps=none hash=fixture error="MissingMethodException: Method not found: string .ModHelper.GetGameVersion()"
+[ModLoader] audit: fixture.disabled v3.34.7 source=Workshop workshop=101 owner=0 running=False trust=NotChecked caps=declared files hash=
+[ModHook] 'BeforeStore' handler FixtureWidget.Main.OnOpen from 'Fixture Widget' threw: System.NullReferenceException: no store
+  at FixtureWidget.Main.OnOpen ()
+[ModHook] Marking the clients added by a 'AfterClients' handler failed: System.InvalidOperationException: bad client
+[Harmony] Failed to patch Store.Open: HarmonyException: patching failed
+  at FixtureWidget.Patches.StoreOpen ()
+Fixture message: Authorization: Bearer sample-secret-in-player-log
+logging endpoint https://fake-user:fake-pass@example.invalid/?access_token=dont-share
